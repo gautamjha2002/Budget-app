@@ -19,7 +19,7 @@ pipeline{
 
         stage('Renaming Docker Image to push on DockerHub'){
             steps{
-                sh 'docker tag ${JOB_NAME}_web gautamjha3112002/${JOB_NAME}_web '
+                sh 'docker tag ${JOB_NAME}_web gautamjha3112002/${JOB_NAME}_web:0.${BUILD_ID} '
             }
         }
         stage('Push to DockerHub'){
