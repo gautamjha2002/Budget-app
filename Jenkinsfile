@@ -30,7 +30,7 @@ pipeline{
 
                 withCredentials([string(credentialsId: 'dockerlogin', variable: 'dockerlogin')]) {
                     sh 'docker login -u gautamjha3112002 -p ${dockerlogin}'
-                   sh 'docker push ${DOCKER_USER}/${JOB_NAME}:0.${BUILD_ID}'
+                   sh 'docker push ${DOCKER_USER}/${JOB_NAME}_web:0.${BUILD_ID}'
                 }
 
                 
