@@ -16,7 +16,7 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
+  host: db
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -24,6 +24,8 @@ default: &default
 development:
   <<: *default
   database: Budgy_development
+  username: postgres
+  password: password1234
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,6 +60,8 @@ development:
 test:
   <<: *default
   database: Budgy_test
+  username: postgres
+  password: password1234
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -82,5 +86,5 @@ test:
 production:
   <<: *default
   database: Budgy_production
-  username: Budgy
-  password: <%= ENV["Budgy_DATABASE_PASSWORD"] %>
+  username: postgres
+  password: password1234
