@@ -1,0 +1,10 @@
+Terraform/*
+.github
+.gitattributes
+.gitignore
+docker-compose.yml
+docker-install.sh
+Dockerfile
+install-compose.sh
+jenkins-install.sh
+Jenkinsfile
