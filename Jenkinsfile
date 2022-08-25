@@ -12,16 +12,10 @@ pipeline{
         }
         stage('Build Docker image'){
             steps{
-                sh 'docker build .'
+                sh 'docker build -t ${DOCKER_USER}/${JOB_NAME}_web:0.${BUILD_ID} .'
             }
         }
         
-
-        stage('Renaming Docker Image to push on DockerHub'){
-            steps{
-                sh 'docker tag ${JOB_NAME}_web gautamjha3112002/${JOB_NAME}_web:0.${BUILD_ID} '
-            }
-        }
         stage('Push to DockerHub'){
             steps{
                 timeout(time:5, unit:'DAYS'){
