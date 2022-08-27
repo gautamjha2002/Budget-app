@@ -1,4 +1,4 @@
-# Define a 'Persistent Voulume Claim'(PVC) for Mysql Storage, dynamically provisioned by cluster
+# Define a 'Persistent Voulume Claim'(PVC) for postgres Storage, dynamically provisioned by cluster
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -13,7 +13,7 @@ spec:
     requests:
       storage: 1Gi    #This will tell kubernetes about the amount of space we are trying to claim.
 ---
-# Configure 'Deployment' of mysql server
+# Configure 'Deployment' of postgres server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,7 +22,7 @@ metadata:
     app: postgres
     tier: database
 spec:
-  selector: # mysql Pod Should contain same labels
+  selector: # postgres Pod Should contain same labels
     matchLabels:
       app: postgres
       tier: database
@@ -53,7 +53,7 @@ spec:
           persistentVolumeClaim:
             claimName: postgres-pv-claim
 ---
-# Define a 'Service' To Expose mysql to Other Services
+# Define a 'Service' To Expose postgres to Other Services
 apiVersion: v1
 kind: Service
 metadata:
@@ -65,7 +65,7 @@ spec:
   ports:
     - port: 5432
       targetPort: 5432
-  selector:       # mysql Pod Should contain same labels
+  selector:       # postgres Pod Should contain same labels
     app: postgres
     tier: database
   clusterIP: None  # We Use DNS, Thus ClusterIP is not relevant
